@@ -7,11 +7,12 @@ import zipfile, io
 import date_selector
 import API_functions as api
 
+path = 'path to directory with Report_Schedule.csv'
 
 # This dataframe holds the reporting schedule.
-report_schedule_df = pd.read_csv('C:\\Users\\E33100\\OneDrive - SRI International\\My Stuff\\Me\\Qualtrics\\Reporting\\Report_Schedule.csv')
+report_schedule_df = pd.read_csv(path + '//Report_Schedule.csv')
 
-dir_save_survey = "C:\\Users\\E33100\\OneDrive - SRI International\\My Stuff\\Me\\Qualtrics\\Reporting\\"
+dir_save_survey = path
 
 surveys_to_report = date_selector.surveys
 
