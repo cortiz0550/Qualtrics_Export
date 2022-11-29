@@ -10,7 +10,7 @@ import API_functions as api
 path = 'path to directory with Report_Schedule.csv'
 
 # This dataframe holds the reporting schedule.
-report_schedule_df = pd.read_csv(path + '//Report_Schedule.csv')
+report_schedule_df = pd.read_csv(path + '\\Report_Schedule.csv')
 
 dir_save_survey = path
 
