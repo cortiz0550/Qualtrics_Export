@@ -5,7 +5,7 @@ import pandas as pd
 import zipfile, io
 import os
 
-import date_selector
+import survey_selector
 import API_functions
 import paths
 
@@ -14,7 +14,7 @@ statuses = []
 
 dir_save_survey = paths.dir_save_survey
 
-surveys_to_report = date_selector.surveys
+surveys_to_report = survey_selector.surveys
 
 # We dont want to go through any of the steps if there are no surveys to report on.
 if len(surveys_to_report) == 0:
