@@ -1,12 +1,11 @@
 import requests
-import csv
+#import csv
 import time
 
 import my_secrets
 
 api_token = my_secrets.api_token
 data_center = my_secrets.data_center
-file_format = ["csv", "csv", "spss"]
 
 # Setting static parameters
 headers = {
@@ -16,18 +15,17 @@ headers = {
 
 
 # This starts the download process by requesting the data from Qualtrics.
-def initiate_request(survey_id, data_center=data_center, api_token=api_token):
+def initiate_request(survey_id, data_center=data_center, api_token=api_token, file_format="csv", breakout_sets=False, use_labels=True):
 	initiate_request_url = "https://{0}.qualtrics.com/API/v3/surveys/{1}/export-responses/".format(data_center, survey_id)
-	initiate_request_payload = {
-		"format": file_format[0],
-		"breakoutSets": False,
+	payload = {
+		"format": file_format,
+		"breakoutSets": breakout_sets,
 		"multiselectSeenUnansweredRecode": 0,
 		"seenUnansweredRecode": -99,
-		"useLabels": True
+		"useLabels": use_labels
 	}
 
-	initiate_response = requests.request("POST", initiate_request_url, json=initiate_request_payload, headers=headers)
-
+	initiate_response = requests.request("POST", initiate_request_url, json=payload, headers=headers)
 	return initiate_response.json()
 
 
@@ -55,20 +53,3 @@ def download_request(survey_id, file_id, data_center=data_center, api_token=api_
 	download_request_url = "https://{0}.qualtrics.com/API/v3/surveys/{1}/export-responses/{2}/file".format(data_center, survey_id, file_id)
 	request_download = requests.request('GET', download_request_url, headers=headers, stream=True)
 	return request_download
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
